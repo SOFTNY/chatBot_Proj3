@@ -45,6 +45,7 @@ async function funcName() {
 
 
 <h4>async와 await 비동기 처리</h4>
+
 - try-catch 처리
 - 에러 위치 찾기 쉬움 
 - 코드 가독성 높음
