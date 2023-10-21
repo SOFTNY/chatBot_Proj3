@@ -1,11 +1,13 @@
 # 🤖ChatBot
 <br>
-<pre>JavaScript, node.js
+<pre>JavaScript, node.js<br>
 
 유소프 스터디에서 각자 진행하고 있는 3주차 js 미니프로젝트입니다.
 
-3주차 주제는 자유로 저는 api를 활용해 만들어 보고 싶어 ChatBot의 주제를 정하게 되었습니다. 
-api를 통해 chat-gpt에서 제공하고 있는 openAi key를 통해 챗봇과 이야기를 할 수 있는 미니프로젝트를 만들어 보았습니다. 
+3주차 주제는 자유주제입니다.<br>
+api를 활용해 만들어 보고 싶어서 ChatBot의 주제를 정하게 되었습니다.<br>
+api를 통해 chat-gpt에서 제공하고 있는 OpenAi Key를 통해 챗봇과 대화할 수 있는<br>
+채팅 미니프로젝트를 만들어 보았습니다. 
 </pre>
 <br>
 
