@@ -27,7 +27,7 @@ API => url, key가져오기
 <br>
 <br>
 
-## 🚨Result [error : expire openai]
+## 🤖Result [error : expire openai]
 ![Create Working Chatbot](https://github.com/SOFTNY/chatBot_Proj3/assets/111892963/fe8351fe-b626-43de-b13e-715e7ac9a8b1)
 <br>
 <br>
