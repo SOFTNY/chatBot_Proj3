@@ -28,7 +28,7 @@ API => url, key가져오기
 <br>
 <br>
 
-## 🤖Result [error : expire openai]
+## 🤖Result
 ![test2](https://github.com/SOFTNY/chatBot_Proj3/assets/111892963/d2da7655-b75e-437b-a4a8-62b0f526d331)
 <br>
 <br>
@@ -70,6 +70,18 @@ async function funcName() {
 - 코드 가독성 높음
 - 에러 핸들링 유리
 
+<br>
+<br>
+
+## 🚨Error
+🚨Failed to load resource : the server... responded with a status of 429 () 
+<br>
+=> expired api key
+<br>
+<br>
+🚨POST ... 400 (Bad Request) 
+<br>
+=> http 요청 본문이나 헤더에 문제가 있는 경우
 
 
 
