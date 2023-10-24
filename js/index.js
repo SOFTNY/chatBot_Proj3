@@ -1,6 +1,6 @@
 //API_KEY
-const conf = "./apikey.js";
-const API_KEY = conf.apikey;
+import config from "./config.js";
+const { API_KEY } = config;
 
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
@@ -12,7 +12,7 @@ let userMessage;
 const inputInitHeight = chatInput.scrollHeight; //.scrollHeight 오버플로로 숨겨진 콘텐츠를 포함하여 콘텐츠 높이 측정
 
 //createChatLi
-const createChatLi = (msg, className) => {
+const createChatLi = (message, className) => {
   const chatLi = document.createElement("li"); //<li>요소 만들기
   chatLi.classList.add("chat", className); //chatLi className을 chat으로 지정
 
@@ -21,45 +21,37 @@ const createChatLi = (msg, className) => {
       ? `<p></p>` //true : <p></p>요소
       : `<span><i class="fa-solid fa-robot"></i></span><p></p>`; //false : icon요소
   chatLi.innerHTML = chatContent; //true & false에 해당하는 요소를 넣기
-  chatLi.querySelector("p").textContent = msg; //chatLi에 p요소에 msg 내용 넣기
+  chatLi.querySelector("p").textContent = message; //chatLi에 p요소에 msg 내용 넣기
   return chatLi;
 };
 
 //generateResponse --> chatBot
-async function generateResponse(incomingChatLi) {
-  const messageElement = incomingChatLi.querySelector("p");
+const generateResponse = async (e) => {
+  const API_URL = "https://api.openai.com/v1/chat/completions";
+  const messageElement = e.querySelector("p");
+
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: userMessage }],
+    }),
+  };
 
   try {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      body: JSON.stringify({
-        //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-        model: "gpt-3.5-turbo",
-        message: [{ role: "user", content: userMessage }],
-      }),
-    };
-
-    console.log(messageElement);
-    const res = await fetch(
-      "https://api.openai.com/v1/chat/completions",
-      requestOptions
-    );
-
+    const res = await fetch(API_URL, requestOptions);
     const data = await res.json();
     console.log(data);
-    messageElement.textContent = data.choices[0].message.content;
-    chatBox.scrollTo(0, chatBox.scrollHeight);
+    messageElement.textContent = data.choices[0].message.content.trim();
+    // return data;
   } catch (err) {
     messageElement.textContent = `OMG! error...`;
-    console.error(err);
   }
-
-  return data;
-}
+};
 
 //handleChat
 //사용자가 chatBot에게 message보냈을 때의 함수
@@ -102,9 +94,6 @@ chatbotToggler.addEventListener("click", () => {
   document.body.classList.toggle("show-chatbot"); //toggle : add, remove
 });
 
-/**
- * 필요여부 => x
- */
 chatInput.addEventListener("input", () => {
   //input textarea 내용을 조절하기
   chatInput.style.height = `${inputInitHeight}px`;
