@@ -86,6 +86,8 @@ async function funcName() {
 <br>
 <br>
 
+[🔗ChatBot 참고자료](https://www.youtube.com/watch?v=Bv8FORu-ACA&t=1750s)
+
 
 
 
